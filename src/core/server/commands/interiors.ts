@@ -13,33 +13,33 @@ ChatController.addCommand('addhouse', '/addhouse', PERMISSIONS.ADMIN, addhouse);
 
 async function addhouse(player: alt.Player) {
     const menu: InputMenu = {
-        title: 'Create House (Unchecked. Do it right.)',
+        title: 'Mülk Oluşturma (Bilgilerin doğru olduğundan emin ol.)',
         options: [
             {
                 id: 'name',
-                desc: 'Name of Property',
-                placeholder: 'Property Name',
+                desc: 'Mülkün Adı',
+                placeholder: 'Mülk ismi',
                 type: InputOptionType.TEXT,
-                error: 'Must specify property name.'
+                error: 'Bir isim girmelisiniz.'
             },
             {
                 id: 'price',
-                desc: 'Price of Property',
+                desc: 'Mülkün fiyatı',
                 placeholder: '5000...',
                 type: InputOptionType.NUMBER,
-                error: 'Must specify property value.'
+                error: 'Bir fiyat değeri girmelisiniz.'
             },
             {
                 id: 'interior',
-                desc: 'Position of Property Interior. As JSON String.',
+                desc: 'İnterior konumu. Json değerinde.',
                 placeholder: '{ "x": 0, "y": 0, "z": 0 }',
                 type: InputOptionType.TEXT,
-                error: 'Must specify property position.'
+                error: 'Konumu belirlemeniz gerekiyor.'
             },
             {
                 id: 'ipl',
-                desc: 'Optional IPL to load on enter if necessary.',
-                placeholder: 'Google it.',
+                desc: 'Gerekirse isteğe bağlı google IPL.',
+                placeholder: 'Google.',
                 type: InputOptionType.TEXT
             }
         ],
@@ -61,12 +61,12 @@ alt.onClient('cmd:Create:House', async (player: alt.Player, results: InputResult
     const [name, price, interior, ipl] = results;
 
     if (!name || !price || !interior) {
-        playerFuncs.emit.message(player, `Please make sure all fields are valid.`);
+        playerFuncs.emit.message(player, `Lütfen tüm alanların dolu olduğundan emin olun.`);
         return;
     }
 
     if (!name.value || !price.value || !interior.value) {
-        playerFuncs.emit.message(player, `Please make sure all fields are valid.`);
+        playerFuncs.emit.message(player, `Lütfen tüm alanların dolu olduğundan emin olun.`);
         return;
     }
 
@@ -75,12 +75,12 @@ alt.onClient('cmd:Create:House', async (player: alt.Player, results: InputResult
     try {
         actualPos = JSON.parse(interior.value);
     } catch (err) {
-        playerFuncs.emit.message(player, `Not a valid Vector3 JSON`);
+        playerFuncs.emit.message(player, `Geçerli bir vector3 değeri girmediniz.`);
         return;
     }
 
     if (!actualPos) {
-        playerFuncs.emit.message(player, `Not a valid Vector3 JSON`);
+        playerFuncs.emit.message(player, `Geçerli bir vector3 değeri girmediniz.`);
         return;
     }
 
@@ -104,5 +104,5 @@ alt.onClient('cmd:Create:House', async (player: alt.Player, results: InputResult
     }
 
     await InteriorSystem.create(houseData);
-    playerFuncs.emit.message(player, `Created House.`);
+    playerFuncs.emit.message(player, `Ev oluşturuldu.`);
 });

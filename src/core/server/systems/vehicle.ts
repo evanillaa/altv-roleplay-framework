@@ -147,7 +147,7 @@ export class VehicleSystem {
         }
 
         if (VehicleSystem.isVehicleLocked(vehicle)) {
-            playerFuncs.emit.notification(player, `~r~Vehicle is not currently unlocked.`);
+            playerFuncs.emit.notification(player, `~r~Araç şu an kilitli değil.`);
             return;
         }
 
@@ -155,7 +155,7 @@ export class VehicleSystem {
 
         const seat = VehicleSystem.findOpenSeat(vehicle);
         if (seat === null) {
-            playerFuncs.emit.notification(player, '~r~Could not find an open seat.');
+            playerFuncs.emit.notification(player, '~r~Boş bir koltuk yok.');
             return;
         }
 
@@ -372,7 +372,7 @@ export class VehicleSystem {
         alt.setTimeout(() => {
             try {
                 vehicle.destroy();
-            } catch (err) {}
+            } catch (err) { }
         }, 500);
     }
 
@@ -393,17 +393,17 @@ export class VehicleSystem {
         }
 
         if (!VehicleFuncs.hasOwnership(player, player.vehicle)) {
-            playerFuncs.emit.notification(player, `~r~You do not have keys for this vehicle.`);
+            playerFuncs.emit.notification(player, `~r~Bu aracın anahtarına sahip değilsiniz.`);
             return;
         }
 
         if (!player.vehicle.engineOn && !VehicleFuncs.hasFuel(player.vehicle)) {
-            playerFuncs.emit.notification(player, `~r~No fuel.`);
+            playerFuncs.emit.notification(player, `~r~Yakıt yok.`);
             return;
         }
 
         if (player.vehicle.isRefueling) {
-            playerFuncs.emit.notification(player, `~r~Vehicle Refuel Not Completed`);
+            playerFuncs.emit.notification(player, `~r~Aracın yakıt deposu dolmadı.`);
             return;
         }
 

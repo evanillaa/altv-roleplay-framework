@@ -7,15 +7,15 @@ import { playerFuncs } from '../extensions/Player';
 import ChatController from '../systems/chat';
 
 ChatController.addCommand(
-    'tpwp',
-    LocaleController.get(LOCALE_KEYS.COMMAND_TELEPORT_WAYPOINT, '/tpwp'),
+    'tp',
+    LocaleController.get(LOCALE_KEYS.COMMAND_TELEPORT_WAYPOINT, '/tp'),
     PERMISSIONS.ADMIN,
     handleCommand
 );
 
 function handleCommand(player: alt.Player): void {
     if (!player.currentWaypoint) {
-        playerFuncs.emit.message(player, `Set a waypoint first.`);
+        playerFuncs.emit.message(player, `Önce bir tp konumu belirleyin ( P : Harita menüsü).`);
         return;
     }
 

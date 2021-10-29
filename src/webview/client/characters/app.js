@@ -50,7 +50,7 @@ const app = new Vue({
                 LABEL_SELECT: 'Select',
                 LABEL_YES: 'Yes',
                 LABEL_NO: 'No',
-                LABEL_CONFIRM_DELETE: 'Are you sure you want to delete your character',
+                LABEL_CONFIRM_DELETE: 'Karakterinizi silmek istediğinden emin misiniz?',
                 LABEL_NAME: 'Name',
                 LABEL_AGE: 'Age',
                 LABEL_GENDER: 'Gender',
